@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lanzarote Fin de Año | Trip de Amigas 2025</title>
+    <!-- Carga de Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fuente Inter y tipografía decorativa para el título divertido -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Permanent+Marker&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILOS GENERALES --- */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcfbf9;
+            color: #44403c;
+            scroll-behavior: smooth;
+        }
+        
+        /* Fuente divertida para frases clave */
+        .fun-font {
+            font-family: 'Permanent Marker', cursive;
+        }
+
+        /* Colores Temáticos: Lava y Arena */
+        .bg-lava { background-color: #b91c1c; } /* Rojo Volcánico */
+        .text-lava { color: #b91c1c; }
+        .text-sand { color: #d97706; } /* Naranja/Ámbar */
+        .bg-dark-rock { background-color: #1c1917; } /* Roca Oscura */
+
+        /* --- HERO SECTION (PORTADA) --- */
+        .hero-section {
+            min-height: 100vh; /* Ajuste a 100vh para mejor visualización en móvil */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        /* Degradado para mejorar legibilidad del texto en portada */
+        .hero-overlay {
+            background: linear-gradient(to top, rgba(28, 25, 23, 0.9) 0%, rgba(28, 25, 23, 0.4) 50%, rgba(185, 28, 28, 0.2) 100%);
+        }
+
+        /* --- COMPONENTES --- */
+        section {
+            padding-top: 4rem; /* Reducido para móvil */
+            margin-top: -4rem; 
+        }
+
+        .card-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        .card-shadow:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Loader para imágenes */
+        .loader {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid #f59e0b;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Icono de acordeón */
+        .accordion-icon { transition: transform 0.3s ease; }
+        .accordion-button[aria-expanded="true"] .accordion-icon { transform: rotate(180deg); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-dark-rock text-white shadow-xl backdrop-blur-md bg-opacity-95">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="#portada" class="text-xl font-bold tracking-wider text-sand hover:text-white transition">
+                    LZT 2025 <span class="text-xs ml-1 opacity-70">| Amigas Edition</span>
+                </a>
+                
+                <!-- Enlaces Escritorio -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="#portada" class="hover:text-sand transition">Inicio</a>
+                    <a href="#alojamiento" class="hover:text-sand transition">Logística</a>
+                    <a href="#itinerario" class="hover:text-sand transition">Itinerario</a>
+                    <a href="#ubicaciones" class="bg-lava hover:bg-red-700 px-4 py-1 rounded-full transition">Mapas y Reservas</a>
+                </div>
+
+                <!-- Botón Móvil -->
+                <button id="mobile-menu-button" class="md:hidden p-2 text-gray-300 hover:text-white">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+        <!-- Menú Móvil -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-rock px-4 pb-4">
+            <a href="#portada" class="block py-2 hover:text-sand">Inicio</a>
+            <a href="#alojamiento" class="block py-2 hover:text-sand">Logística</a>
+            <a href="#itinerario" class="block py-2 hover:text-sand">Itinerario</a>
+            <a href="#ubicaciones" class="block py-2 text-lava font-bold">Mapas y Reservas</a>
+        </div>
+    </nav>
+
+    <!-- 1. PORTADA / HERO (FAMARA BACKGROUND) -->
+    <header id="portada" class="hero-section flex items-end pb-12 md:pb-32 justify-center text-white relative">
+        <div class="absolute inset-0 hero-overlay"></div>
+        
+        <!-- Loader inicial para la imagen de fondo -->
+        <div id="hero-loader" class="absolute inset-0 flex flex-col items-center justify-center bg-dark-rock z-0">
+            <div class="loader"></div>
+            <p class="ml-3 mt-3 text-xs tracking-widest uppercase">Cargando Playa de Famara...</p>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+            <!-- Frase divertida -->
+            <p class="fun-font text-xl md:text-4xl text-amber-400 mb-4 transform -rotate-2">
+                "Operación Fin de Año: 6 Amigas vs. El Volcán"
+            </p>
+            
+            <!-- Título Principal -->
+            <h1 class="text-5xl md:text-8xl font-black tracking-tighter mb-6 leading-tight">
+                LANZAROTE <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-amber-500">2025</span>
+            </h1>
+
+            <!-- Resumen -->
+            <div class="bg-black/30 backdrop-blur-sm p-4 md:p-6 rounded-2xl border border-white/10 mb-8 mx-auto max-w-2xl">
+                <p class="text-base md:text-xl font-light leading-relaxed text-gray-100">
+                    6 amigas, 7 días y una isla increíble. Nos escapamos del frío para despedir el año entre las olas de <span class="font-bold text-amber-300">Famara</span>, paisajes de Marte y copas de vino volcánico.
+                </p>
+            </div>
+
+            <!-- Botón de Planazo (COLOR NARANJA/ÁMBAR CON TEXTO OSCURO) -->
+            <a href="#itinerario" class="group bg-amber-400 text-dark-rock font-bold py-3 px-6 md:px-8 rounded-full shadow-lg hover:bg-amber-500 transition-all duration-300 inline-flex items-center text-sm md:text-base">
+                Ver el Planazo
+                <svg class="w-5 h-5 ml-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- 2. ALOJAMIENTO Y LOGÍSTICA -->
+    <section id="alojamiento" class="py-16 md:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <span class="text-lava font-bold tracking-widest uppercase text-sm">Nuestra Base</span>
+                <h2 class="text-3xl md:text-4xl font-black text-sand mt-2">La Casa & Los Vuelos ✈️</h2>
+            </div>
+
+            <div class="grid md:grid-cols-12 gap-8">
+                <!-- Columna Izquierda: La Villa -->
+                <div class="md:col-span-5 bg-fcfbf9 rounded-2xl p-6 md:p-8 card-shadow border border-stone-100 relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h3 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">🏠 Pico Partido Villa (Yaiza)</h3>
+                        <p class="text-gray-600 mb-6 text-sm md:text-base">Nuestro refugio de paz. Piscina privada (¡para las valientes!), barbacoa y vistas a los volcanes. Situación estratégica cerca de Timanfaya.</p>
+                        <ul class="space-y-2 mb-6 text-gray-700 text-sm">
+                            <li class="flex items-center">✨ 4 Habitaciones dobles</li>
+                            <li class="flex items-center">🌊 Piscina Privada</li>
+                            <li class="flex items-center">🔥 Zona Chill-out & BBQ</li>
+                        </ul>
+                    </div>
+                    <!-- Imagen Villa -->
+                    <div class="mt-6 rounded-xl overflow-hidden h-40 md:h-48 relative bg-gray-200">
+                        <!-- La imagen se cargará mediante JS y se mostrará con un efecto de fade-in -->
+                        <img id="villa-img" src="" alt="Villa con piscina" class="w-full h-full object-cover opacity-0 transition-opacity duration-500">
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Vuelos Simplificados y Coches -->
+                <div class="md:col-span-7 space-y-6">
+                    
+                    <!-- Vuelos de IDA -->
+                    <div class="bg-stone-100 rounded-2xl p-6">
+                        <h4 class="font-bold text-gray-800 mb-4 text-xl flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-lava" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                            Vuelos de IDA (Llegadas)
+                        </h4>
+                        
+                        <div class="space-y-4 text-sm md:text-base">
+                            <!-- Vuelo Marina V. -->
+                            <div class="border-b border-gray-200 pb-2">
+                                <p class="font-bold text-gray-900">30/12/2025: <span class="text-lava">15:45 - 17:30</span></p>
+                                <p class="text-gray-700">Iberia - Madrid → Lanzarote <span class="font-semibold">(Marina V.)</span></p>
+                            </div>
+                            <!-- Vuelo Marina L. -->
+                            <div class="border-b border-gray-200 pb-2">
+                                <p class="font-bold text-gray-900">30/12/2025: <span class="text-lava">19:25 - 20:25</span></p>
+                                <p class="text-gray-700">Ryanair - Sevilla → Lanzarote <span class="font-semibold">(Marina L.)</span></p>
+                            </div>
+                            <!-- Vuelo Marta y Andrea -->
+                            <div class="border-b border-gray-200 pb-2">
+                                <p class="font-bold text-gray-900">30/12/2025: <span class="text-lava">21:20 - 22:55</span></p>
+                                <p class="text-gray-700">Ryanair - Madrid → Lanzarote <span class="font-semibold">(Marta y Andrea)</span></p>
+                            </div>
+                            <!-- Vuelo Belén -->
+                            <div>
+                                <p class="font-bold text-gray-900">31/12/2025: <span class="text-lava">06:10 - 07:45</span></p>
+                                <p class="text-gray-700">Ryanair - Madrid → Lanzarote <span class="font-semibold">(Belén)</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Vuelos de VUELTA -->
+                    <div class="bg-stone-100 rounded-2xl p-6">
+                        <h4 class="font-bold text-gray-800 mb-4 text-xl flex items-center">
+                            <svg class="w-6 h-6 mr-2 text-lava" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 13l-5 5m0 0l-5-5m5 5V6"></path></svg>
+                            Vuelos de VUELTA (Salidas)
+                        </h4>
+                         <div class="space-y-4 text-sm md:text-base">
+                            <!-- Vuelo Marina V. -->
+                            <div class="border-b border-gray-200 pb-2">
+                                <p class="font-bold text-gray-900">04/01/2026: <span class="text-lava">07:10 - 10:45</span></p>
+                                <p class="text-gray-700">Ryanair - Lanzarote → Madrid <span class="font-semibold">(Marina V.)</span></p>
+                            </div>
+                            <!-- Vuelo Marina L. -->
+                            <div class="border-b border-gray-200 pb-2">
+                                <p class="font-bold text-gray-900">05/01/2026: <span class="text-lava">09:10 - 12:10</span></p>
+                                <p class="text-gray-700">Ryanair - Lanzarote → Sevilla <span class="font-semibold">(Marina L.)</span></p>
+                            </div>
+                            <!-- Vuelo Belén, Marta, Andrea -->
+                            <div>
+                                <p class="font-bold text-gray-900">05/01/2026: <span class="text-lava">11:50 - 15:25</span></p>
+                                <p class="text-gray-700">Ryanair - Lanzarote → Madrid <span class="font-semibold">(Belén, Marta, Andrea)</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Coches (Actualizado sin descripciones de tamaño) -->
+                    <div class="bg-stone-100 rounded-2xl p-6">
+                        <h4 class="font-bold text-gray-800 mb-3 flex items-center">
+                            <svg class="w-5 h-5 mr-2 text-lava" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+                            Coches de Alquiler (CICAR)
+                        </h4>
+                        <div class="text-sm md:text-base space-y-3 text-gray-600">
+                            <div class="flex justify-between border-b border-gray-300 pb-2">
+                                <span>🚗 <strong class="text-gray-900">Coche 1 (Marina V.)</strong></span>
+                                <span class="font-mono font-bold text-gray-800">XGXY2</span>
+                            </div>
+                            <div class="flex justify-between pt-1">
+                                <span>🚗 <strong class="text-gray-900">Coche 2 (Marta)</strong></span>
+                                <span class="font-mono font-bold text-gray-800">A6XYV</span>
+                            </div>
+                            <p class="text-xs italic pt-2">NOTA: Los horarios de recogida/entrega están coordinados con los vuelos de cada conductora.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. ITINERARIO DETALLADO -->
+    <section id="itinerario" class="py-16 md:py-20 bg-stone-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 md:mb-12">
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900">🗺️ El Plan Día a Día</h2>
+                <p class="text-gray-500 mt-2 text-sm md:text-base">Haz clic para ver los detalles y fotos</p>
+            </div>
+
+            <div class="space-y-4" id="accordion-container">
+                
+                <!-- DÍA 1: 30 Diciembre -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden accordion-item">
+                    <button class="w-full px-4 py-4 flex items-center justify-between bg-white hover:bg-gray-50 transition accordion-button" aria-expanded="false">
+                        <div class="flex items-center">
+                            <div class="bg-gray-200 text-gray-700 font-bold rounded-lg w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mr-3 md:mr-4 text-lg md:text-xl">30</div>
+                            <div class="text-left">
+                                <h3 class="font-bold text-base md:text-lg text-gray-800">Llegada & Aterrizaje</h3>
+                                <p class="text-xs md:text-sm text-gray-500">Vuelos escalonados hasta las 22:55h</p>
+                            </div>
+                        </div>
+                        <svg class="w-5 h-5 md:w-6 md:h-6 text-gray-400 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="hidden px-4 md:px-6 pb-4 md:pb-6 pt-2 border-t border-gray-100 accordion-content">
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+                            <li><strong class="font-semibold">Logística:</strong> Recogida de coches y traslado a la Villa.</li>
+                            <li>Check-in en Pico Partido Villa.</li>
+                            <li>Compra de supervivencia y cena tranquila en la Villa.</li>
+                        </ul>
+                        <!-- La imagen se cargará mediante JS y se mostrará con un efecto de fade-in -->
+                        <img id="img-d1" src="" class="w-full h-32 md:h-48 object-cover rounded-lg bg-gray-200 mt-4" alt="Paisaje Lanzarote">
+                    </div>
+                </div>
+
+                <!-- DÍA 2: 31 Diciembre (NOCHEVIEJA) -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden accordion-item border-l-4 border-amber-400">
+                    <button class="w-full px-4 py-4 flex items-center justify-between bg-white hover:bg-gray-50 transition accordion-button" aria-expanded="false">
+                        <div class="flex items-center">
+                            <div class="bg-amber-100 text-amber-700 font-bold rounded-lg w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mr-3 md:mr-4 text-lg md:text-xl">31</div>
+                            <div class="text-left">
+                                <h3 class="font-bold text-base md:text-lg text-gray-800">¡NOCHEVIEJA! 🍇🥂</h3>
+                                <p class="text-xs md:text-sm text-gray-500">Playa, Puesta de Sol & Fiesta</p>
+                            </div>
+                        </div>
+                        <svg class="w-5 h-5 md:w-6 md:h-6 text-gray-400 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="hidden px-4 md:px-6 pb-4 md:pb-6 pt-2 border-t border-gray-100 accordion-content">
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+                            <li><strong class="font-semibold">Mañana/Mediodía:</strong> Playa todo el día (Famara o Papagayo).</li>
+                            <li><strong class="font-semibold">Comida:</strong> Chiringuito cerca de la playa.</li>
+                            <li><strong class="font-semibold">Tarde:</strong> Puesta de sol en El Chupadero (Viñedos).</li>
+                            <li><strong class="font-semibold">Noche:</strong> Cena en la Villa y plan FIN DE AÑO (Bares en Famara o fiesta).</li>
+                        </ul>
+                        <div class="grid grid-cols-2 gap-2 mt-4">
+                            <!-- Las imágenes se cargarán mediante JS y se mostrarán con un efecto de fade-in -->
+                            <img id="img-d2-1" src="" class="w-full h-32 object-cover rounded-lg bg-gray-200" alt="Famara Surf">
+                            <img id="img-d2-2" src="" class="w-full h-32 object-cover rounded-lg bg-gray-200" alt="La Geria">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DÍA 3: 01 Enero (AÑO NUEVO) -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden accordion-item">
+                    <button class="w-full px-4 py-4 flex items-center justify-between bg-white hover:bg-gray-50 transition accordion-button" aria-expanded="false">
+                        <div class="flex items-center">
+                            <div class="bg-gray-200 text-gray-700 font-bold rounded-lg w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mr-3 md:mr-4 text-lg md:text-xl">01</div>
+                            <div class="text-left">
+                                <h3 class="font-bold text-base md:text-lg text-gray-800">Año Nuevo & Surf 🏄‍♀️</h3>
+                                <p class="text-xs md:text-sm text-gray-500">Las Dunas y Casa Morelino</p>
+                            </div>
+                        </div>
+                        <svg class="w-5 h-5 md:w-6 md:h-6 text-gray-400 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="hidden px-4 md:px-6 pb-4 md:pb-6 pt-2 border-t border-gray-100 accordion-content">
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+                            <li><strong class="font-semibold">Mañana:</strong> Playa todo el día en Famara (Clase de surf).</li>
+                            <li><strong class="font-semibold">Comida:</strong> Las Dunas Famara (Reserva a las 15:00h).</li>
+                            <li><strong class="font-semibold">Cena:</strong> Casa Morelino (Sobre las 21:00h).</li>
+                        </ul>
+                        <div class="grid grid-cols-2 gap-2 mt-4">
+                            <!-- Las imágenes se cargarán mediante JS y se mostrarán con un efecto de fade-in -->
+                            <img id="img-d3-1" src="" class="w-full h-32 object-cover rounded-lg bg-gray-200" alt="Papas Arrugadas">
+                            <img id="img-d3-2" src="" class="w-full h-32 object-cover rounded-lg bg-gray-200" alt="Famara">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DÍA 4: 02 Enero -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden accordion-item border-l-4 border-red-500">
+                    <button class="w-full px-4 py-4 flex items-center justify-between bg-white hover:bg-gray-50 transition accordion-button" aria-expanded="false">
+                        <div class="flex items-center">
+                            <div class="bg-red-100 text-red-700 font-bold rounded-lg w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mr-3 md:mr-4 text-lg md:text-xl">02</div>
+                            <div class="text-left">
+                                <h3 class="font-bold text-base md:text-lg text-gray-800">Volcanes & Vino 🌋🍷</h3>
+                                <p class="text-xs md:text-sm text-gray-500">Ruta Tremesana, Cata El Grifo y Bodega de Santiago</p>
+                            </div>
+                        </div>
+                        <svg class="w-5 h-5 md:w-6 md:h-6 text-gray-400 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="hidden px-4 md:px-6 pb-4 md:pb-6 pt-2 border-t border-gray-100 accordion-content">
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+                            <li><strong class="font-semibold">Mañana:</strong> Excursión Ruta de Tremesana (9:00 a 12:00h).</li>
+                            <li><strong class="font-semibold">Tarde:</strong> Cata de vinos en El Grifo (Sobre las 15:00h).</li>
+                            <li><strong class="font-semibold">Cena:</strong> Bodega de Santiago (Reserva a las 20:30h).</li>
+                        </ul>
+                        <!-- La imagen se cargará mediante JS y se mostrará con un efecto de fade-in -->
+                        <img id="img-d4" src="" class="w-full h-32 md:h-48 object-cover rounded-lg bg-gray-200 mt-4" alt="Timanfaya">
+                    </div>
+                </div>
+
+                <!-- DÍA 5: 03 Enero (GASTRO-RELAX EN EL RISCO) -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden accordion-item">
+                    <button class="w-full px-4 py-4 flex items-center justify-between bg-white hover:bg-gray-50 transition accordion-button" aria-expanded="false">
+                        <div class="flex items-center">
+                            <div class="bg-gray-200 text-gray-700 font-bold rounded-lg w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mr-3 md:mr-4 text-lg md:text-xl">03</div>
+                            <div class="text-left">
+                                <h3 class="font-bold text-base md:text-lg text-gray-800">Gastro-Relax & César Manrique</h3>
+                                <p class="text-xs md:text-sm text-gray-500">El Risco, Jameos y Casa Cristóbal</p>
+                            </div>
+                        </div>
+                        <svg class="w-5 h-5 md:w-6 md:h-6 text-gray-400 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="hidden px-4 md:px-6 pb-4 md:pb-6 pt-2 border-t border-gray-100 accordion-content">
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+                            <li><strong class="font-semibold">Mañana:</strong> Playa todo el día en Famara (Clase de surf).</li>
+                            <li><strong class="font-semibold">Comida:</strong> El Risco en Famara (Reservado a las 15:00h).</li>
+                            <li><strong class="font-semibold">Tarde:</strong> Tarde libre para visitar Jameos del Agua o Cueva de los Verdes.</li>
+                            <li><strong class="font-semibold">Cena:</strong> Casa Cristobal.</li>
+                        </ul>
+                        <!-- La imagen se cargará mediante JS y se mostrará con un efecto de fade-in -->
+                        <img id="img-d5" src="" class="w-full h-32 md:h-48 object-cover rounded-lg bg-gray-200 mt-4" alt="Restaurante El Risco">
+                    </div>
+                </div>
+
+                <!-- DÍA 6: 04 Enero -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden accordion-item border-l-4 border-blue-400">
+                    <button class="w-full px-4 py-4 flex items-center justify-between bg-white hover:bg-gray-50 transition accordion-button" aria-expanded="false">
+                        <div class="flex items-center">
+                            <div class="bg-blue-100 text-blue-700 font-bold rounded-lg w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mr-3 md:mr-4 text-lg md:text-xl">04</div>
+                            <div class="text-left">
+                                <h3 class="font-bold text-base md:text-lg text-gray-800">La Graciosa 🏝️</h3>
+                                <p class="text-xs md:text-sm text-gray-500">Excursión de día completo y cena de despedida</p>
+                            </div>
+                        </div>
+                        <svg class="w-5 h-5 md:w-6 md:h-6 text-gray-400 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="hidden px-4 md:px-6 pb-4 md:pb-6 pt-2 border-t border-gray-100 accordion-content">
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 text-sm">
+                            <li><strong class="font-semibold">Día Completo:</strong> Ferry desde Órzola. Alquiler de bicis.</li>
+                            <li>Comida en un chiringuito de La Graciosa.</li>
+                            <li>Vuelta a Lanzarote sobre las 17:00h.</li>
+                            <li><strong class="font-semibold">Cena:</strong> Cena de Despedida.</li>
+                        </ul>
+                        <div class="grid grid-cols-2 gap-2 mt-4">
+                            <!-- Las imágenes se cargarán mediante JS y se mostrarán con un efecto de fade-in -->
+                            <img id="img-d6-1" src="" class="w-full h-32 object-cover rounded-lg bg-gray-200" alt="La Graciosa Playa">
+                            <img id="img-d6-2" src="" class="w-full h-32 object-cover rounded-lg bg-gray-200" alt="Caleta de Sebo">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DÍA 7: 05 Enero -->
+                <div class="bg-white rounded-xl shadow-sm overflow-hidden accordion-item">
+                    <button class="w-full px-4 py-4 flex items-center justify-between bg-white hover:bg-gray-50 transition accordion-button" aria-expanded="false">
+                        <div class="flex items-center">
+                            <div class="bg-gray-200 text-gray-700 font-bold rounded-lg w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mr-3 md:mr-4 text-lg md:text-xl">05</div>
+                            <div class="text-left">
+                                <h3 class="font-bold text-base md:text-lg text-gray-800">La Despedida</h3>
+                                <p class="text-xs md:text-sm text-gray-500">Vuelos de vuelta escalonados</p>
+                            </div>
+                        </div>
+                        <svg class="w-5 h-5 md:w-6 md:h-6 text-gray-400 accordion-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div class="hidden px-4 md:px-6 pb-4 md:pb-6 pt-2 border-t border-gray-100 accordion-content">
+                        <p class="text-gray-600 mb-4 text-sm">Último desayuno, limpieza villa y al aeropuerto. ¡Hasta la próxima!</p>
+                        <!-- La imagen se cargará mediante JS y se mostrará con un efecto de fade-in -->
+                        <img id="img-d7" src="" class="w-full h-32 md:h-48 object-cover rounded-lg bg-gray-200 mt-4" alt="Avión">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. ENLACES Y MAPAS (Actualizado con Dunas y El Grifo) -->
+    <section id="ubicaciones" class="py-16 md:py-20 bg-dark-rock text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-amber-500 mb-8 md:mb-10 text-center">📍 Links Salvavidas</h2>
+            <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                
+                <!-- Enlaces a la Villa -->
+                <a href="https://maps.google.com/?q=Villa+Pico+Partido+Lanzarote" target="_blank" class="block bg-stone-800 p-4 md:p-6 rounded-xl hover:bg-stone-700 transition border border-stone-700 hover:border-amber-500 group">
+                    <h3 class="font-bold text-base md:text-lg mb-1 md:mb-2 group-hover:text-amber-400">🏠 Ubicación Villa</h3>
+                    <p class="text-xs md:text-sm text-gray-400">Mapa directo a la casa en Yaiza.</p>
+                </a>
+
+                <!-- Restaurante Dunas de Famara -->
+                <a href="https://maps.google.com/?q=Restaurante+Dunas+de+Famara,+C.+Chirimoya,+13,+35558+Urb.+Famara,+Las+Palmas" target="_blank" class="block bg-stone-800 p-4 md:p-6 rounded-xl hover:bg-stone-700 transition border border-stone-700 group">
+                    <h3 class="font-bold text-base md:text-lg mb-1 md:mb-2">🍽️ Mapa: Dunas de Famara</h3>
+                    <p class="text-xs md:text-sm text-gray-400">Restaurante en Famara.</p>
+                </a>
+
+                <!-- Bodegas El Grifo -->
+                <a href="https://maps.google.com/?q=Bodegas+El+Grifo,+LZ-30,+Km+11,+35559+San+Bartolomé,+Las+Palmas" target="_blank" class="block bg-stone-800 p-4 md:p-6 rounded-xl hover:bg-stone-700 transition border border-stone-700 group">
+                    <h3 class="font-bold text-base md:text-lg mb-1 md:mb-2">🍷 Mapa: Bodegas El Grifo</h3>
+                    <p class="text-xs md:text-sm text-gray-400">San Bartolomé.</p>
+                </a>
+
+                <!-- Reserva Timanfaya -->
+                <a href="https://www.gobiernodecanarias.org/parquesnacionales/timanfaya/visita/rutas/ruta_tremesana/" target="_blank" class="block bg-stone-800 p-4 md:p-6 rounded-xl hover:bg-stone-700 transition border border-stone-700 hover:border-red-500 group">
+                    <h3 class="font-bold text-base md:text-lg mb-1 md:mb-2 group-hover:text-red-400">🌋 Reserva Timanfaya</h3>
+                    <p class="text-xs md:text-sm text-gray-400">Web oficial ruta Tremesana (Obligatorio reservar)</p>
+                </a>
+
+                <!-- Ferry La Graciosa -->
+                <a href="https://www.lineasromero.com/ferry-la-graciosa" target="_blank" class="block bg-stone-800 p-4 md:p-6 rounded-xl hover:bg-stone-700 transition border border-stone-700 hover:border-blue-400 group">
+                    <h3 class="font-bold text-base md:text-lg mb-1 md:mb-2 group-hover:text-blue-300">🚢 Ferry La Graciosa</h3>
+                    <p class="text-xs md:text-sm text-gray-400">Horarios y compra de tickets (Órzola).</p>
+                </a>
+                
+                <!-- Restaurantes/Lugares (Existentes) -->
+                <a href="https://maps.google.com/?q=Restaurante+El+Risco+Famara" target="_blank" class="block bg-stone-800 p-4 md:p-6 rounded-xl hover:bg-stone-700 transition border border-stone-700 group">
+                    <h3 class="font-bold text-base md:text-lg mb-1 md:mb-2">🍽️ Mapa: El Risco</h3>
+                    <p class="text-xs md:text-sm text-gray-400">Famara</p>
+                </a>
+
+                <a href="https://maps.google.com/?q=Casa+Morelino+Lanzarote" target="_blank" class="block bg-stone-800 p-4 md:p-6 rounded-xl hover:bg-stone-700 transition border border-stone-700 group">
+                    <h3 class="font-bold text-base md:text-lg mb-1 md:mb-2">🍽️ Mapa: Casa Morelino</h3>
+                    <p class="text-xs md:text-sm text-gray-400">Restaurante</p>
+                </a>
+
+                <a href="https://maps.google.com/?q=Bodega+de+Santiago+Lanzarote" target="_blank" class="block bg-stone-800 p-4 md:p-6 rounded-xl hover:bg-stone-700 transition border border-stone-700 group">
+                    <h3 class="font-bold text-base md:text-lg mb-1 md:mb-2">🍷 Mapa: Bodega Santiago</h3>
+                    <p class="text-xs md:text-sm text-gray-400">Yaiza</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black text-stone-500 py-6 md:py-8 text-center text-xs md:text-sm">
+        <p>Hecho para el mejor viaje de amigas de la historia. Lanzarote 2025/2026.</p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Configuración de la API para generar imágenes (IMAGEN-4.0)
+        const apiKey = ""; 
+        // Usamos el modelo imagen-4.0-generate-001 para generar imágenes estáticas de alta calidad.
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`;
+
+        // Prompts de Imágenes
+        const prompts = {
+            'portada': 'Wide panoramic view of Famara Beach Lanzarote at sunset. Golden sand reflecting the sky, surfers in the distance, and the majestic Risco de Famara cliffs in the background. Cinematic, warm lighting, high resolution.',
+            'villa-img': 'Luxurious white villa in Lanzarote with a private swimming pool, volcanic stone walls, and a view of the mountains. Sunny day.',
+            'img-d1': 'A scenic road winding through the black lava fields of Lanzarote. Minimalist landscape photography.',
+            'img-d2-1': 'Surfers riding waves at Famara Beach, Lanzarote. Action shot, sunny.',
+            'img-d2-2': 'La Geria vineyards in Lanzarote. Green vines growing in black volcanic ash circular pits. Sunset light.',
+            'img-d3-1': 'Close up of "Papas arrugadas" Canarian wrinkled potatoes with red Mojo sauce. Food photography.',
+            'img-d3-2': 'Beautiful view of Famara beach coastline with cliffs.',
+            'img-d4': 'Dramatic landscape of Timanfaya National Park. Red and black volcanic craters. Mars-like terrain.',
+            'img-d5': 'Oceanfront restaurant in Famara, Lanzarote, overlooking the Atlantic ocean and cliffs. Modern, minimalist white architecture with large windows. Focus on the view from the dining room or terrace. High contrast, sunny day.',
+            'img-d6-1': 'Playa de las Conchas in La Graciosa. Golden sand, turquoise water and a red volcano hill in background.',
+            'img-d6-2': 'Sandy streets of Caleta de Sebo, La Graciosa. White houses and blue sky.',
+            'img-d7': 'View from an airplane window looking down at the island of Lanzarote and the ocean.'
+        };
+
+        // Generador de Imágenes con Retries (Exponential Backoff)
+        async function generateImage(prompt) {
+            const maxRetries = 3;
+            let currentRetry = 0;
+
+            while (currentRetry < maxRetries) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({ instances: { prompt: prompt }, parameters: { sampleCount: 1 } })
+                    });
+                    
+                    if (!response.ok) {
+                        if (response.status === 429) { 
+                            throw new Error('Rate limit exceeded');
+                        }
+                        const errorData = await response.json();
+                        throw new Error(`API Error: ${response.status} - ${JSON.stringify(errorData)}`);
+                    }
+
+                    const data = await response.json();
+                    return data.predictions?.[0]?.bytesBase64Encoded ? `data:image/png;base64,${data.predictions[0].bytesBase64Encoded}` : null;
+                } catch (e) {
+                    currentRetry++;
+                    if (currentRetry >= maxRetries) {
+                        console.error("Error generating image after retries", e);
+                        return null; 
+                    }
+                    const delay = Math.pow(2, currentRetry) * 1000;
+                    // Espera exponencial
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                }
+            }
+        }
+
+        // Carga de imágenes con efecto
+        async function loadImages() {
+            // 1. Cargar Portada (Prioridad)
+            const heroUrl = await generateImage(prompts['portada']);
+            const heroLoader = document.getElementById('hero-loader');
+            
+            if (heroUrl) {
+                const hero = document.getElementById('portada');
+                hero.style.backgroundImage = `url('${heroUrl}')`;
+                heroLoader.style.display = 'none';
+            } else {
+                // Fallback si falla la API
+                document.getElementById('portada').style.backgroundImage = `url('https://placehold.co/1920x1080/1c1917/d97706/webp?text=FAMARA+BEACH+SUNSET')`;
+                heroLoader.style.display = 'none';
+            }
+
+            // 2. Cargar resto de imágenes
+            const imgIds = ['villa-img', 'img-d1', 'img-d2-1', 'img-d2-2', 'img-d3-1', 'img-d3-2', 'img-d4', 'img-d5', 'img-d6-1', 'img-d6-2', 'img-d7'];
+            
+            for (const id of imgIds) {
+                const url = await generateImage(prompts[id]);
+                const img = document.getElementById(id);
+                if (img) {
+                    if (url) {
+                        img.src = url;
+                        // Muestra la imagen después de que se haya cargado
+                        img.onload = () => img.classList.remove('opacity-0');
+                    } else {
+                        // Placeholder si la generación falla
+                        img.src = `https://placehold.co/600x400/e5e7eb/9ca3af?text=${id.toUpperCase().replace('-', ' ')} (FALLBACK)`;
+                        img.classList.remove('opacity-0');
+                    }
+                }
+            }
+        }
+
+        // Funcionalidad UI
+        document.addEventListener('DOMContentLoaded', () => {
+            // Menú Móvil
+            const btn = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+            // Acordeón (Para los detalles del itinerario)
+            const accordions = document.querySelectorAll('.accordion-button');
+            accordions.forEach(acc => {
+                acc.addEventListener('click', () => {
+                    const content = acc.nextElementSibling;
+                    const isExpanded = acc.getAttribute('aria-expanded') === 'true';
+                    
+                    // Cerrar otros acordeones
+                    document.querySelectorAll('.accordion-content').forEach(c => c.classList.add('hidden'));
+                    document.querySelectorAll('.accordion-button').forEach(b => b.setAttribute('aria-expanded', 'false'));
+
+                    if (!isExpanded) {
+                        // Abrir el acordeón seleccionado
+                        content.classList.remove('hidden');
+                        acc.setAttribute('aria-expanded', 'true');
+                    }
+                });
+            });
+
+            // Iniciar carga de imágenes
+            loadImages();
+        });
+    </script>
+</body>
+</html>
